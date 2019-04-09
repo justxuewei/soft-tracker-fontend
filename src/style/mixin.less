@@ -1,0 +1,40 @@
+@image: "../assets/images";
+
+// 背景图片地址和大小
+.bg-img(@url) {
+  background-image: url(@url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+//定位左右居中
+.horizontal-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//宽高
+.size(@width, @height){
+  width: @width;
+  height: @height;
+}
+
+// 设置字体
+.font(@size, @color) {
+  font-size: @size;
+  color: @color;
+  line-height: @size;
+}
+
+.font(@size, @color, @weight) {
+  font-size: @size;
+  color: @color;
+  font-weight: @weight;
+  line-height: @size;
+}
+
+.float(@pos) {
+  display: block;
+  float: @pos;
+}

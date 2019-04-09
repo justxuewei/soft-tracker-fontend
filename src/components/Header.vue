@@ -1,6 +1,6 @@
 <template>
   <div class="header-container">
-    <img src="../assets/images/header-logo.svg" class="header-logo"  alt="SoftTracker"/>
+    <img src="../assets/images/header-logo.svg" class="header-logo"  alt="SoftTracker" style="cursor: pointer" @click="goHome"/>
     <a-dropdown>
       <div class="user-info-container">
         <img :src="userAvatarUrl" class="avatar-img" />
@@ -69,6 +69,9 @@
             window.localStorage.clear()
             this.$router.push({path: '/login'})
         }
+      },
+      goHome() {
+        this.$router.push({path: "/"})
       }
     }
   }

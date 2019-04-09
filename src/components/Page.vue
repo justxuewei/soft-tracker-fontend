@@ -45,10 +45,15 @@
   @import "../style/common";
   @import "../style/mixin";
 
-  .page-title {
-    .font(30px, black, bold);
-    padding-top: 48px;
-    padding-left: 64px;
-    line-height: 42px;
+  .container {
+    padding-bottom: 60px;
+    box-sizing: border-box;
+
+    .page-title {
+      .font(30px, black, bold);
+      padding-top: 48px;
+      padding-left: 64px;
+      line-height: 42px;
+    }
   }
 </style>

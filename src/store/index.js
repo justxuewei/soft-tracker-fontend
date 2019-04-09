@@ -6,12 +6,16 @@ import {message} from 'ant-design-vue'
 Vue.use(Vuex)
 
 const state = {
-  userInfo: null
+  userInfo: null,
+  caseForm: null
 }
 
 const mutations = {
   saveUserInfo(state, userInfo) {
     state.userInfo = userInfo
+  },
+  saveCaseForm(state, caseForm) {
+    state.caseForm = caseForm
   }
 }
 

@@ -1,6 +1,4 @@
-# SoftTracker
-
-![](http://res.niuxuewei.com/2019-04-09-Logo-2.png)
+<img src="http://res.niuxuewei.com/2019-04-09-Logo-1.png" style="display: block; height: 30px">
 
 SoftTracker is a tracking and guiding platform for software engineering training based on agile development, which can unit test and deploy the project uploaded by students automatically.
 

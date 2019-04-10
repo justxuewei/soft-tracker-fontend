@@ -1,5 +1,6 @@
 import store from '@/store/index'
 import crypto from 'crypto'
+import constants from './constants-utils'
 
 export default {
   getRole() {
@@ -10,9 +11,9 @@ export default {
     const role = userInfo['roles'][0]
     switch (role) {
       case 'student':
-        return '学生'
+        return constants.role.STUDENT
       case 'tutor':
-        return '导师'
+        return constants.role.TUTOR
     }
   },
   getAvatar() {

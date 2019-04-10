@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 const state = {
   userInfo: null,
-  caseForm: null
+  caseForm: null,
+  editCaseForm: null
 }
 
 const mutations = {
@@ -16,19 +17,32 @@ const mutations = {
   },
   saveCaseForm(state, caseForm) {
     state.caseForm = caseForm
+  },
+  saveEditCaseForm(state, caseForm) {
+    state.editCaseForm = caseForm
   }
 }
 
 const actions = {
-  async getUserInfo({commit}) {
+  async getUserInfo(context, notRefresh = false) {
     try {
       const userInfo = await stHttp({
-        url: '/user/info'
+        url: '/user/info',
+        notRefresh: notRefresh
       })
-      console.log(">>> 获取的用户信息为")
-      commit('saveUserInfo', userInfo['data'])
+      context.commit('saveUserInfo', userInfo['data'])
     } catch (e) {
-      message.error("获取用户信息失败，错误原因: " + e)
+      message.error('获取用户信息失败，错误原因: ' + e)
+    }
+  },
+  async getCaseDetails(context, id) {
+    try {
+      const data = await stHttp({
+        url: `/case/details?caseId=${id}`
+      })
+      context.commit('saveEditCaseForm', data['data'])
+    } catch (e) {
+      this.$message.error(e)
     }
   }
 }

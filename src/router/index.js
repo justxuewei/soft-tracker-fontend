@@ -3,8 +3,16 @@ import Router from 'vue-router'
 import Index from '@/pages/Index'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
-import CreateCase from '@/pages/CreateCase'
-import CasePreview from '@/pages/CasePreview'
+import CaseCreate from '@/pages/CaseCreate'
+import CaseMDPreview from '@/pages/CaseMDPreview'
+import Success from '@/pages/Success'
+import MyCase from '@/pages/MyCase'
+import CaseView from '@/pages/CaseView'
+import CaseEdit from '@/pages/CaseEdit'
+import Case from '@/pages/Case'
+import Error from '@/pages/Error'
+
+import constants from '@/utils/constants-utils'
 
 Vue.use(Router)
 
@@ -36,20 +44,71 @@ export default new Router({
       }
     },
     {
-      path: '/create_case',
-      name: 'CreateCase',
-      component: CreateCase,
+      path: '/success',
+      name: 'Success',
+      component: Success,
       meta: {
-        title: '创建教师案例'
+        title: '成功'
       }
     },
     {
-      path: '/case_preview',
-      name: 'CasePreview',
-      component: CasePreview,
+      path: '/error',
+      name: 'Error',
+      component: Error,
       meta: {
-        title: '案例正文预览'
+        title: '失败'
       }
+    },
+    {
+      path: '/case',
+      name: 'Case',
+      component: Case,
+      children: [
+        {
+          path: 'my',
+          component: MyCase,
+          name: 'MyCase',
+          meta: {
+            title: '我的案例',
+            roles: [constants.role.TUTOR]
+          }
+        },
+        {
+          path: 'edit',
+          name: 'CaseEdit',
+          component: CaseEdit,
+          meta: {
+            title: '编辑案例',
+            roles: [constants.role.TUTOR]
+          }
+        },
+        {
+          path: 'view',
+          name: 'CaseView',
+          component: CaseView,
+          meta: {
+            title: '案例浏览',
+            roles: [constants.role.TUTOR, constants.role.STUDENT]
+          }
+        },
+        {
+          path: 'preview',
+          name: 'CasePreview',
+          component: CaseMDPreview,
+          meta: {
+            title: '案例正文预览',
+            roles: [constants.role.TUTOR]
+          }
+        },
+        {
+          path: 'create',
+          name: 'CaseCreate',
+          component: CaseCreate,
+          meta: {
+            title: '创建教师案例'
+          }
+        },
+      ]
     }
   ]
 })

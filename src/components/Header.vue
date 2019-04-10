@@ -15,7 +15,7 @@
         <a-menu-item key="logout">退出登录</a-menu-item>
       </a-menu>
     </a-dropdown>
-    <a-icon type="plus" class="add-icon" @click="addItem"></a-icon>
+    <a-icon type="plus" class="add-icon" @click="add"></a-icon>
     <div class="clear"></div>
   </div>
 </template>
@@ -55,8 +55,16 @@
       }
     },
     methods: {
-      addItem() {
+      add() {
         console.log(">>> add item tapped")
+        let path = '';
+        switch (this.role) {
+          case '学生':
+            break
+          case '导师':
+            path = '/case/create'
+        }
+        this.$router.push({path: path})
       },
       ...mapActions([
         'getUserInfo'
@@ -64,6 +72,7 @@
       menuClicked(e) {
         switch (e.key) {
           case 'case':
+            this.$router.push({name: 'MyCase'})
             break
           case 'logout':
             window.localStorage.clear()

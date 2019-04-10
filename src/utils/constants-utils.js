@@ -32,11 +32,8 @@ export default {
       return 'http://192.168.56.101/api/v4'
     }
   },
-
-  /**
-   * 获取上一步路由
-   */
-  previousRoute(route) {
-
+  role: {
+    TUTOR: '导师',
+    STUDENT: '学生'
   }
 }

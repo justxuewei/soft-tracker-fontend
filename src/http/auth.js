@@ -74,6 +74,29 @@ export default {
     })
   },
   /**
+   * 检测access token是否过期
+   */
+  checkAccessToken() {
+    return new Promise(function(resolve, reject) {
+      const accessToken = localStorage.getItem('st_access_token')
+      if (!accessToken) {
+        reject()
+      }
+
+      let formData = new FormData()
+      formData.append('token', accessToken)
+      axios({
+        url: constants.softTrackerHostPrefix() + '/oauth/check_token',
+        method: 'post',
+        data: formData
+      }).then(function(response) {
+        resolve(response)
+      }).catch(function(error) {
+        reject(error)
+      })
+    })
+  },
+  /**
    * 刷新Gitlab的Private Token
    */
   refreshGitlabPrivateToken() {

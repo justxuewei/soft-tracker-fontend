@@ -1,5 +1,5 @@
 <template>
-  <div class="login-background">
+  <div class="login-background" @keyup.enter="register">>
     <div class="panel">
       <div class="title">注册</div>
       <a-alert class="form-item" style="margin-top: 24px" type="error" :message="errorMsg" showIcon v-if="errorMsg !== ''" />

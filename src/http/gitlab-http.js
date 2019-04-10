@@ -23,7 +23,7 @@ export default function $axios(options) {
       error => {
         // 超时判断
         if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {
-          console.error('请求超时了')
+          console.info('请求超时了')
           message.error("请求超时，请稍后重试")
         }
         return Promise.reject(error)
@@ -38,7 +38,7 @@ export default function $axios(options) {
       error => {
         if (error && error.response) {
           if (error.response.status === 401) {
-            console.error('>>> 401错误, 登录过期')
+            console.info('>>> 401错误, 登录过期')
             // 更新Private-Token
             return auth.refreshGitlabPrivateToken().then(() => {
               console.log('>>> 刷新private token后重新执行该请求')

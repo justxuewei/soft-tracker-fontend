@@ -2,7 +2,7 @@
 
 SoftTracker is a tracking and guiding platform for software engineering training based on agile development, which can unit test and deploy the project uploaded by students automatically. This repo is the frontend of SoftTracker, which need deploy with its backend that will be open-sourced later.
 
-The manuscript of SoftTracker is on the `manuscript` folder. You can preview it without deploying any SoftTracker components. Be aware that it is not the final version of the SoftTracker, there are maybe some minor differences between the draft.
+The manuscript of SoftTracker is in the `/docs` folder, alternatively, it can be viewed online in the [Github Pages](https://xavier-niu.github.io/soft-tracker-fontend/). You can preview it without deploying any SoftTracker components. Be aware that it is not the final version of the SoftTracker, there are maybe some minor differences between the draft.
 
 Credits: 
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="login-background">
+  <div class="login-background" @keyup.enter="login">>
     <div class="panel">
       <div class="title">登录</div>
       <div class="subtitle">登录到SoftTracker，解锁全部功能</div>

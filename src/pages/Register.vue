@@ -1,5 +1,5 @@
 <template>
-  <div class="login-background">
+  <div class="login-background" @keyup.enter="register">>
     <div class="panel">
       <div class="title">注册</div>
       <a-alert class="form-item" style="margin-top: 24px" type="error" :message="errorMsg" showIcon v-if="errorMsg !== ''" />
@@ -25,6 +25,9 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import constants from '@/utils/constants-utils'
+
   export default {
     name: "Register",
     data() {
@@ -76,9 +79,9 @@
           return
         }
         this.loading = true
-        this.$stHttp({
+        axios({
           method: 'post',
-          url: '/auth/register',
+          url: constants.softTrackerHostPrefix() + '/auth/register',
           data: {
             username: this.username,
             password: this.password,
@@ -88,9 +91,9 @@
           this.loading = false
           // 重新登录
           window.location.href = "/login"
-        }).catch((data) => {
+        }).catch((error) => {
           this.loading = false
-          this.errorMsg = data['data']
+          this.errorMsg = error.response.data['message']
         })
       }
     }

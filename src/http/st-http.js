@@ -25,7 +25,7 @@ export default function $axios(options) {
       error => {
         // 超时判断
         if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {
-          console.error('请求超时了')
+          console.info('请求超时了')
           message.error("请求超时，请稍后重试")
         }
         return Promise.reject(error)
@@ -39,19 +39,23 @@ export default function $axios(options) {
       },
       error => {
         if (error && error.response) {
-          if (error.response.status === 401) {
-            console.error('>>> 401错误, 登录过期')
-            // 执行刷新access token
-            return auth.refreshAccessToken().then(() => {
-              console.log('>>> 刷新access token后重新执行该请求')
-              let __config = error.config
-              __config.headers['Authorization'] = `Bearer ${localStorage.getItem('st_access_token')}`
-              return axios(__config).then(
-                (response) => {
-                  return httpUtils.getResponseData(response)
-                }
-              )
-            })
+          if (options.notRefresh) {
+            console.log('st-http.js [INFO] 禁止刷新令牌')
+          } else {
+            if (error.response.status === 401) {
+              console.log('st-http.js [INFO] 准备刷新令牌')
+              // 执行刷新access token
+              return auth.refreshAccessToken().then(() => {
+                console.log('st-http.js [INFO] 刷新access token后重新执行该请求')
+                let __config = error.config
+                __config.headers['Authorization'] = `Bearer ${localStorage.getItem('st_access_token')}`
+                return axios(__config).then(
+                  (response) => {
+                    return httpUtils.getResponseData(response)
+                  }
+                )
+              })
+            }
           }
         }
         return Promise.reject(httpUtils.getResponseData(error.response))

@@ -9,9 +9,13 @@
 
 //定位左右居中
 .horizontal-center {
+  .margin-left-right(auto, auto)
+}
+
+.margin-left-right(@left, @right) {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: @left;
+  margin-right: @right;
 }
 
 //宽高
@@ -32,6 +36,13 @@
   color: @color;
   font-weight: @weight;
   line-height: @size;
+}
+
+.font(@size, @color, @weight, @fontSize) {
+  font-size: @size;
+  color: @color;
+  font-weight: @weight;
+  line-height: @fontSize;
 }
 
 .float(@pos) {

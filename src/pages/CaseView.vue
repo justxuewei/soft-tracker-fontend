@@ -16,7 +16,8 @@
         </div>
         <div class="clear"></div>
       </div>
-      <div class="markdown-area" v-html="md.render(data.content)"></div>
+<!--      <div class="markdown-area" v-html="md.render(data.content)"></div>-->
+      <MarkdownView class="markdown-area" :markdown="data.content" />
       <div class="demo-url" v-if="data.demoUrl != null">演示地址: <a :href="data.demoUrl">{{data.demoUrl}}</a></div>
     </div>
   </Page>
@@ -24,7 +25,7 @@
 
 <script>
   import Page from '@/components/Page'
-  import MarkdownIt from 'markdown-it'
+  import MarkdownView from '@/components/MarkdownView'
   import {mapState} from 'vuex'
 
   export default {
@@ -32,12 +33,11 @@
       return {
         id: this.$route.query.id,
         data: null,
-        md: new MarkdownIt(),
         loading: true
       }
     },
     components: {
-      Page
+      Page, MarkdownView
     },
     computed: {
       ...mapState(['userInfo'])

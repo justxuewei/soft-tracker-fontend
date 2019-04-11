@@ -46,7 +46,7 @@ export default function $axios(options) {
               console.log('st-http.js [INFO] 准备刷新令牌')
               // 执行刷新access token
               return auth.refreshAccessToken().then(() => {
-                console.log('>>> 刷新access token后重新执行该请求')
+                console.log('st-http.js [INFO] 刷新access token后重新执行该请求')
                 let __config = error.config
                 __config.headers['Authorization'] = `Bearer ${localStorage.getItem('st_access_token')}`
                 return axios(__config).then(

@@ -76,7 +76,9 @@
             break
           case 'logout':
             window.localStorage.clear()
-            this.$router.push({path: '/login'})
+            // 清除vuex数据
+            window.location.reload()
+            // this.$router.push({path: '/login'})
         }
       },
       goHome() {

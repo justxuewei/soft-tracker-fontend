@@ -105,7 +105,8 @@ export default new Router({
           name: 'CaseCreate',
           component: CaseCreate,
           meta: {
-            title: '创建教师案例'
+            title: '创建教师案例',
+            roles: [constants.role.TUTOR]
           }
         },
       ]

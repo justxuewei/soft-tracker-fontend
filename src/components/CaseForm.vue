@@ -85,8 +85,8 @@
       mdPreview() {
         this.$emit('preview')
       },
-      submit() {
-        this.$emit('submit')
+      submit(e) {
+        this.$emit('submit', e)
       }
     }
   }

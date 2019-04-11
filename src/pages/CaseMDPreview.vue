@@ -1,31 +1,60 @@
 <template>
   <Page>
-    <div class="page-title">案例正文预览</div>
-    <div class="markdown-area" v-html="previewHtml"></div>
+    <div>
+      <a-affix :style="{ position: 'absolute', right: '64px'}" :offsetTop="110">
+        <a-button type="primary" @click="back">
+          <a-icon type="left"/>
+          返回
+        </a-button>
+      </a-affix>
+      <div class="page-title">案例正文预览</div>
+      <MarkdownView class="markdown-area" :markdown="markdown"/>
+    </div>
   </Page>
 </template>
 
 <script>
-  import Page from "@/components/Page"
-  import MarkdownIt from 'markdown-it'
+  import Page from '@/components/Page'
+  import {mapState} from 'vuex'
+  import MarkdownView from '@/components/MarkdownView'
 
   export default {
     data() {
       return {
-        md: new MarkdownIt()
+        fromRoute: null
       }
     },
+    beforeRouteEnter(to, from, next) {
+      console.log(from)
+      next(vm => {
+        vm.fromRoute = from
+      })
+    },
     computed: {
-      previewHtml() {
-        if (this.$store.state.caseForm == null || this.$store.state.caseForm['content'] === undefined) {
-          return ''
+      ...mapState(['caseForm', 'editCaseForm']),
+      markdown() {
+        // 查看case create form正文
+        if (this.caseForm != null && this.caseForm['content'] !== undefined) {
+          return this.caseForm['content']
         }
-        const md = this.$store.state.caseForm['content']
-        return this.md.render(md)
+
+        // 查看case edit form正文
+        if (this.editCaseForm != null && this.editCaseForm['content'] !== undefined) {
+          return this.editCaseForm['content']
+        }
+
+        return ''
+      }
+    },
+    methods: {
+      back() {
+        this.$router.push({
+          path: this.fromRoute.path
+        })
       }
     },
     components: {
-      Page
+      Page, MarkdownView
     }
   }
 </script>

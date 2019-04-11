@@ -20,15 +20,15 @@
         return this.$route.query.pageTitle
       },
       title() {
-        if (!this.$route.query.title) return ""
+        if (!this.$route.query.title) return "错误"
         return this.$route.query.title
       },
       subTitle() {
-        if (!this.$route.query.subTitle) return ""
+        if (!this.$route.query.subTitle) return "这里好像有点小问题"
         return this.$route.query.subTitle
       },
       buttonTitle() {
-        if (!this.$route.query.buttonTitle) return ""
+        if (!this.$route.query.buttonTitle) return "返回首页"
         return this.$route.query.buttonTitle
       },
       redirectPath() {

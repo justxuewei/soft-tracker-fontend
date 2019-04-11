@@ -1,17 +1,7 @@
 <template>
   <Page>
-    <div v-if="error" style="padding-top: 100px">
-      <a-alert style="width: 60%; margin: auto"
-        message="出错啦"
-        :description="errorMsg"
-        type="error"
-        showIcon
-      />
-    </div>
-    <div v-else>
-      <div class="page-title">编辑案例</div>
-      <CaseForm v-if="renderForm" :form-data="editCaseForm" :loading="false"></CaseForm>
-    </div>
+    <div class="page-title">编辑案例</div>
+    <CaseForm ref="caseForm" v-if="renderForm" :form-data="editCaseForm" :loading="false" @preview="preview"></CaseForm>
   </Page>
 </template>
 
@@ -24,9 +14,8 @@
     name: 'CaseEdit',
     data() {
       return {
-        error: false,
-        errorMsg: '',
-        renderForm: false
+        renderForm: false,
+        isSubmitted: false
       }
     },
     components: {
@@ -36,19 +25,24 @@
       ...mapState(['editCaseForm', 'userInfo'])
     },
     methods: {
-      ...mapActions(['getCaseDetails', 'getUserInfo'])
+      ...mapActions(['getCaseDetails', 'getUserInfo']),
+      preview() {
+        this.$router.push({path: '/case/preview'})
+      }
     },
     watch: {
       editCaseForm(newValue, oldValue) {
-        console.log(`Updating from ${oldValue} to ${newValue}`);
+        console.log(`Updating from ${oldValue} to ${newValue}`)
         if (newValue != null) {
+          console.log('new value is not null')
           this.renderForm = true
         }
       }
     },
-    created() {
+    mounted() {
+      console.log('mounted')
       if (!this.editCaseForm) {
-        console.log(">>> 无数据")
+        console.log('>>> 无数据')
         this.getCaseDetails(this.$route.query.id)
       }
 
@@ -57,16 +51,28 @@
       }
 
       if (this.editCaseForm.author !== this.userInfo.username) {
-        this.error = true
-        this.errorMsg = '你无权编辑该案例'
-        return false
+        this.$router.push({
+          path: '/error',
+          query: {
+            subTitle: '你无权编辑此页面'
+          }
+        })
+      } else {
+        this.renderForm = true
       }
+    },
+    beforeDestroy() {
+      // 暂存结果
+      if (this.isSubmitted) return
+      console.log('暂存结果')
+      const form = this.$refs.caseForm.form
+      let editCaseForm = this.editCaseForm
+      // 将form表单中修改过得信息重新存入editCaseForm
+      const formData = form.getFieldsValue()
+      for (let item in formData) {
+        editCaseForm[item] = formData[item]
+      }
+      this.$store.commit('saveEditCaseForm', editCaseForm)
     }
   }
 </script>
-
-<style lang="less">
-  @import "../style/common";
-  @import "../style/mixin";
-
-</style>

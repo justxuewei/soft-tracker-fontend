@@ -8,7 +8,8 @@ Vue.use(Vuex)
 const state = {
   userInfo: null,
   caseForm: null,
-  editCaseForm: null
+  editCaseForm: null,
+  caseMarkdown: null
 }
 
 const mutations = {
@@ -32,7 +33,8 @@ const actions = {
       })
       context.commit('saveUserInfo', userInfo['data'])
     } catch (e) {
-      message.error('获取用户信息失败，错误原因: ' + e)
+      // message.error('获取用户信息失败，错误原因: ' + e)
+      console.log('获取用户信息失败，错误原因: ' + e)
     }
   },
   async getCaseDetails(context, id) {

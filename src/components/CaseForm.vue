@@ -32,7 +32,13 @@
       </a-form-item>
 
       <a-form-item label="案例标签" :label-col="labelCol" :wrapper-col="wrapperCol">
-        <a-select v-decorator="['tags']" mode="tags" placeholder="请使用回车或者英文句号分割" :tokenSeparators="[',']" />
+        <a-select
+          v-decorator="['tags']"
+          mode="tags"
+          placeholder="请使用回车或者英文句号分割"
+          :tokenSeparators="[',']"
+          :notFoundContent="null"
+        />
       </a-form-item>
 
       <a-form-item :wrapper-col="{span: 21}">

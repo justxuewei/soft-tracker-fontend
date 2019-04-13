@@ -57,7 +57,7 @@
                 }
               })
             } catch (e) {
-              this.$message.error(e)
+              this.$message.error(e.message)
             } finally {
               this.loading = false
             }

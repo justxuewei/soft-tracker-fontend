@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div v-if="anchor.length > 0">
     <a-row>
       <a-col :span="5">
         <div class="anchor">
           <a-anchor :offsetTop="60" :offsetBottom="120">
-            <template v-if="anchor.length > 0" v-for="l1 in anchor">
+            <template v-for="l1 in anchor">
               <a-anchor-link :href="'#' + l1.id" :title="l1.title">
                 <template v-if="l1.children.length > 0" v-for="l2 in l1.children">
                   <a-anchor-link :href="'#' + l2.id" :title="l2.title">
@@ -22,6 +22,9 @@
         <div class="markdown" style="width: 80%; margin: auto" v-html="markdownHtml"></div>
       </a-col>
     </a-row>
+  </div>
+  <div v-else>
+    <div class="markdown" style="width: 80%; margin: auto" v-html="markdownHtml"></div>
   </div>
 </template>
 
@@ -78,7 +81,6 @@
           // 取出最后一个元素的子元素
           anchorLevel = anchorLevel[anchorLevel.length - 1].children
         }
-        console.log(">>> push")
         anchorLevel.push({
           id: e.attrs[0][1],
           title: document.getElementById(e.attrs[0][1]).innerText,

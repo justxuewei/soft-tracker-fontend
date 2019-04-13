@@ -40,9 +40,8 @@
           })
           this.list = data["data"]
         } catch (e) {
-          this.$message.error(e)
+          this.$message.error(e.message)
         } finally {
-          console.log('finally')
           this.loading = false
         }
       }

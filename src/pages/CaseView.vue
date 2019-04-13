@@ -5,6 +5,12 @@
     </div>
     <div class="case-view-container" style="position: relative" v-else>
       <a-button type="primary" class="edit-button" v-if="userInfo['username'] === data['author']" @click="edit">编辑</a-button>
+      <a-tooltip placement="top" >
+        <template slot="title">
+          <span>选择此案例作为项目参考</span>
+        </template>
+        <a-button type="primary" class="edit-button" v-if="role === studentRole" @click="apply">项目申报</a-button>
+      </a-tooltip>
       <div class="page-title" style="width: 90%">{{data.title}}</div>
       <div class="info-container">
         <a-avatar :src="data.avatar" class="avatar"/>
@@ -27,6 +33,8 @@
   import Page from '@/components/Page'
   import MarkdownView from '@/components/MarkdownView'
   import {mapState} from 'vuex'
+  import UserUtils from '@/utils/user-utils'
+  import Constants from '@/utils/constants-utils'
 
   export default {
     data() {
@@ -40,7 +48,13 @@
       Page, MarkdownView
     },
     computed: {
-      ...mapState(['userInfo'])
+      ...mapState(['userInfo']),
+      role() {
+        return UserUtils.getRole()
+      },
+      studentRole() {
+        return Constants.role.STUDENT
+      }
     },
     methods: {
       edit() {
@@ -50,6 +64,14 @@
           path: '/case/edit',
           query: {
             id: this.id
+          }
+        })
+      },
+      apply() {
+        this.$router.push({
+          path: '/project/creation',
+          query: {
+            caseId: this.$route.query.id
           }
         })
       }

@@ -1,7 +1,7 @@
 <template>
   <Page>
     <div class="page-title">编辑案例</div>
-    <CaseForm ref="caseForm" v-if="renderForm" :form-data="editCaseForm" :loading="false" @preview="preview"></CaseForm>
+    <CaseForm ref="caseForm" v-if="renderForm" :form-data="editCaseForm" :loading="loading" @preview="preview" @submit="submit"></CaseForm>
   </Page>
 </template>
 
@@ -15,7 +15,8 @@
     data() {
       return {
         renderForm: false,
-        isSubmitted: false
+        isSubmitted: false,
+        loading: false
       }
     },
     components: {
@@ -28,6 +29,41 @@
       ...mapActions(['getCaseDetails', 'getUserInfo']),
       preview() {
         this.$router.push({path: '/case/preview'})
+      },
+      submit(e) {
+        e.preventDefault();
+        const form = this.$refs.caseForm.form
+        form.validateFields((err, fieldsValue) => {
+          if (err) return
+          this.loading = true
+          /**
+           * TODO: 可以根据原有数据做判断，有条件的传到后端
+           */
+          const submit = async () => {
+            try {
+              fieldsValue['id'] = this.$route.query.id
+              await this.$stHttp({
+                method: 'post',
+                url: '/case/edit',
+                data: fieldsValue
+              })
+              this.isSubmitted = true
+              this.$store.commit('saveEditCaseForm', null)
+              this.$router.push({
+                path: '/case/view',
+                query: {
+                  id: this.$route.query.id
+                }
+              })
+            } catch (e) {
+              this.$message.error(e.message)
+            } finally {
+              this.loading = false
+            }
+          }
+
+          submit()
+        })
       }
     },
     watch: {

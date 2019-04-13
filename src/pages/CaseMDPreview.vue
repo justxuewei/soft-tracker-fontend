@@ -49,7 +49,8 @@
     methods: {
       back() {
         this.$router.push({
-          path: this.fromRoute.path
+          path: this.fromRoute.path,
+          query: this.fromRoute.query
         })
       }
     },

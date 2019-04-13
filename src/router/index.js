@@ -13,6 +13,9 @@ import Case from '@/pages/Case'
 import Error from '@/pages/Error'
 
 import constants from '@/utils/constants-utils'
+import CaseAll from '@/pages/CaseAll'
+import Project from '@/pages/Project'
+import ProjectCreation from '@/pages/ProjectCreation'
 
 Vue.use(Router)
 
@@ -109,6 +112,31 @@ export default new Router({
             roles: [constants.role.TUTOR]
           }
         },
+        {
+          path: 'all',
+          name: 'CaseAll',
+          component: CaseAll,
+          meta: {
+            title: '全部案例',
+            roles: [constants.role.STUDENT]
+          }
+        }
+      ]
+    },
+    {
+      path: '/project',
+      name: 'Project',
+      component: Project,
+      children: [
+        {
+          path: 'creation',
+          name: 'ProjectCreation',
+          component: ProjectCreation,
+          meta: {
+            title: '项目申报',
+            roles: [constants.role.STUDENT]
+          }
+        }
       ]
     }
   ]

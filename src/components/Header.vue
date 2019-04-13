@@ -15,7 +15,14 @@
         <a-menu-item key="logout">退出登录</a-menu-item>
       </a-menu>
     </a-dropdown>
-    <a-icon type="plus" class="add-icon" @click="add"></a-icon>
+
+    <a-tooltip placement="bottom" class="add-icon">
+      <template slot="title">
+        <span v-if="role === '导师'">新建教师案例</span>
+        <span v-if="role === '学生'">新建项目</span>
+      </template>
+      <a-icon type="plus" @click="add"></a-icon>
+    </a-tooltip>
     <div class="clear"></div>
   </div>
 </template>
@@ -60,6 +67,7 @@
         let path = '';
         switch (this.role) {
           case '学生':
+            path = '/case/all'
             break
           case '导师':
             path = '/case/create'

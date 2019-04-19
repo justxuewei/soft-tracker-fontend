@@ -24,28 +24,20 @@
   height: @height;
 }
 
-// 设置字体
-.font(@size, @color) {
+.font(@size: 20px, @line: none, @color: black, @weight: normal, @opacity: 1) {
   font-size: @size;
-  color: @color;
-  line-height: @size;
-}
-
-.font(@size, @color, @weight) {
-  font-size: @size;
-  color: @color;
   font-weight: @weight;
-  line-height: @size;
-}
-
-.font(@size, @color, @weight, @fontSize) {
-  font-size: @size;
+  line-height: if(ispixel(@line), @line, @size);
+  opacity: @opacity;
   color: @color;
-  font-weight: @weight;
-  line-height: @fontSize;
 }
 
 .float(@pos) {
   display: block;
   float: @pos;
+}
+
+.absolute() {
+  display: block;
+  position: absolute;
 }

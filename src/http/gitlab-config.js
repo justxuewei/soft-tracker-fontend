@@ -2,7 +2,7 @@ import constants from "@/utils/constants-utils"
 
 export default {
   method: 'get',
-  baseURL: constants.gitlabHostPrefix(),
+  baseURL: constants.gitlabAPIPrefix(),
   // 请求头信息
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',

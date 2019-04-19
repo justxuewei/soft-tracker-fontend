@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header id="header"/>
-    <div class="container" :style="{minHeight: containerMinHeight + 'px'}">
+    <div id="container" class="container" :style="{minHeight: containerMinHeight + 'px'}">
       <slot></slot>
     </div>
     <Footer id="footer"/>
@@ -48,12 +48,12 @@
   .container {
     padding-bottom: 60px;
     box-sizing: border-box;
+    position: relative;
 
     .page-title {
-      .font(30px, black, bold);
+      .font(@size: 30px, @line: 42px, @color: black, @weight: bold);
       padding-top: 48px;
       padding-left: 64px;
-      line-height: 42px;
     }
   }
 </style>

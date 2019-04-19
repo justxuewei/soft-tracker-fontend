@@ -4,7 +4,7 @@
     <a-dropdown>
       <div class="user-info-container">
         <img :src="userAvatarUrl" class="avatar-img" />
-        <div class="username">{{username}}</div>
+        <div class="username">{{realname}}</div>
         <div class="clear"></div>
       </div>
 
@@ -50,9 +50,9 @@
       userAvatarUrl() {
         return UserUtils.getAvatar()
       },
-      username() {
+      realname() {
         if (this.userInfo == null) return ""
-        return this.userInfo['username']
+        return this.userInfo['realname']
       },
       /**
        * 目前只能使用单角色
@@ -101,6 +101,8 @@
   @import "../style/mixin";
 
   .header-container {
+    position: relative;
+    z-index: 3;
     height: 64px;
     background-color: #fff;
     box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
@@ -138,7 +140,7 @@
       .username {
         .float(left);
         margin-left: 8px;
-        .font(14px, rgba(0, 0, 0, 0.65));
+        .font(14px, @color: rgba(0, 0, 0, 0.65));
         line-height: 24px;
       }
     }

@@ -3,9 +3,13 @@
     <div class="panel">
       <div class="title">注册</div>
       <a-alert class="form-item" style="margin-top: 24px" type="error" :message="errorMsg" showIcon v-if="errorMsg !== ''" />
-      <a-input class="form-item username-input" placeholder="账户" v-model="username" ref="usernameInput">
+      <a-input class="form-item username-input" placeholder="账户，不能含有中文字符" v-model="username" ref="usernameInput">
         <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)"/>
         <a-icon v-if="username" slot="suffix" type="close-circle" @click="emitEmpty('usr')" />
+      </a-input>
+      <a-input class="form-item username-input" placeholder="真实姓名" v-model="realname" ref="realnameInput">
+        <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)"/>
+        <a-icon v-if="username" slot="suffix" type="close-circle" @click="emitEmpty('real')" />
       </a-input>
       <a-input class="form-item other-input" placeholder="邮箱" v-model="email" ref="emailInput">
         <a-icon slot="prefix" type="mail" style="color:rgba(0,0,0,.25)"/>
@@ -34,6 +38,7 @@
       return {
         errorMsg: '',
         username: '',
+        realname:'',
         email: '',
         password: '',
         confirmedPassword: '',
@@ -46,6 +51,10 @@
           case 'usr':
             this.$refs.usernameInput.focus()
             this.username = ''
+            break
+          case 'real':
+            this.$refs.realnameInput.focus()
+            this.realname = ''
             break
           case 'email':
             this.$refs.emailInput.focus()
@@ -66,6 +75,10 @@
           this.errorMsg = "用户名不能为空"
           return
         }
+        if (this.realname === '') {
+          this.errorMsg = "真实姓名不能为空"
+          return
+        }
         if (this.email === '') {
           this.errorMsg = "邮箱不能为空"
           return
@@ -81,9 +94,10 @@
         this.loading = true
         axios({
           method: 'post',
-          url: constants.softTrackerHostPrefix() + '/auth/register',
+          url: constants.softTrackerHostPrefix() + '/checkProjectRole/register',
           data: {
             username: this.username,
+            realname: this.realname,
             password: this.password,
             email: this.email
           }

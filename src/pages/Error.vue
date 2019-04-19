@@ -60,7 +60,7 @@
   }
 
   .title {
-    .font(24px, black, bold);
+    .font(24px, @weight: bold);
     line-height: 32px;
     width: 100%;
     text-align: center;
@@ -69,7 +69,7 @@
 
   .sub-title {
     width: 15%;
-    .font(14px, rgba(0, 0, 0, 0.45));
+    .font(14px, @size: rgba(0, 0, 0, 0.45));
     .horizontal-center;
     line-height: 22px;
     margin-top: 16px;

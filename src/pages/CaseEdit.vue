@@ -36,9 +36,7 @@
         form.validateFields((err, fieldsValue) => {
           if (err) return
           this.loading = true
-          /**
-           * TODO: 可以根据原有数据做判断，有条件的传到后端
-           */
+          // TODO: 可以根据原有数据做判断，有条件的传到后端
           const submit = async () => {
             try {
               fieldsValue['id'] = this.$route.query.id

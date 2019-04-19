@@ -25,15 +25,30 @@ export default {
    * gitlab api域名前缀
    * @returns {string}
    */
+  gitlabAPIPrefix() {
+    return `${this.gitlabHostPrefix()}/api/v4`
+  },
   gitlabHostPrefix() {
     if (process.env.NODE_ENV === 'production') {
       return ''
     } else {
-      return 'http://192.168.56.101/api/v4'
+      return 'http://192.168.56.101';
     }
   },
   role: {
     TUTOR: '导师',
     STUDENT: '学生'
+  },
+  projectRole: {
+    member: '成员',
+    master: '组长',
+    tutor: '导师'
+  },
+  projectStatus: {
+    applying: '审核中',
+    rejected: '已驳回',
+    developing: '开发中',
+    defending: '答辩中',
+    closed: '已结题'
   }
 }

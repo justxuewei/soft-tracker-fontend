@@ -123,7 +123,7 @@
       }
 
       .author {
-        .font(16px, rgba(0, 0, 0, 0.65), normal, 23px);
+        .font(16px, 23px, rgba(0, 0, 0, 0.65));
         margin-left: 16px;
         .float(left);
       }
@@ -141,7 +141,7 @@
     .demo-url {
       margin-top: 48px;
       .margin-left-right(64px, 64px);
-      .font(16px, black, bold, 24px);
+      .font(16px, 24px, @weight: bold);
 
       a {
         font-weight: normal;

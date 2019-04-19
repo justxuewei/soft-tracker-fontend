@@ -34,7 +34,7 @@
   .item-container {
 
     .title {
-      .font(16px, rgba(0, 0, 0, 0.85), bold, 24px)
+      .font(@size: 16px, @color: rgba(0, 0, 0, 0.85), @weight: bold)
     }
 
     .tags {
@@ -43,7 +43,7 @@
 
     .brief-intro {
       margin-top: 16px;
-      .font(14px, rgba(0, 0, 0, 0.65), normal, 24px);
+      .font(@size: 14px, @line: 24px, @color: rgba(0, 0, 0, 0.65));
     }
 
     .info {
@@ -57,13 +57,13 @@
       }
 
       .author {
-        .font(14px, rgba(0, 0, 0, 0.65), normal, 20px);
+        .font(14px, 20px, rgba(0, 0, 0, 0.65));
         margin-left: 16px;
         .float(left);
       }
 
       .date {
-        .font(14px, rgba(0, 0, 0, 0.25), normal, 20px);
+        .font(14px, 20px, rgba(0, 0, 0, 0.25));
         margin-left: 24px;
         .float(left);
       }

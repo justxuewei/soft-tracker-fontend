@@ -87,7 +87,7 @@
 
   .register-link {
     margin-top: 24px;
-    .font(14px, #1890FF);
+    .font(14px, @color: #1890FF);
     text-align: right;
   }
 

@@ -47,7 +47,7 @@
       }
 
       .col-title {
-        .font(16px, white, bold);
+        .font(@size: 16px, @color: white, @weight: bold);
         padding-bottom: 8px;
         line-height: 22px;
       }
@@ -55,7 +55,7 @@
       .col-item {
         display: block;
         margin-top: 6px;
-        .font(14px, white);
+        .font(14px, @color: white);
         line-height: 20px;
 
         span {

@@ -16,6 +16,11 @@ import constants from '@/utils/constants-utils'
 import CaseAll from '@/pages/CaseAll'
 import Project from '@/pages/Project'
 import ProjectCreation from '@/pages/ProjectCreation'
+import RunningProjectList from '@/components/RunningProjectList'
+import DiscussList from '@/components/DiscussList'
+import ClosedProjectList from '@/components/ClosedProjectList'
+import ProjectDetails from '@/pages/ProjectDetails'
+import ProjectReapply from '@/pages/ProjectReapply'
 
 Vue.use(Router)
 
@@ -26,24 +31,45 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index,
-      meta: {
-        title: "面板"
-      }
+      children: [
+        {
+          path: 'running',
+          alias: '',
+          component: RunningProjectList,
+          meta: {
+            title: '面板'
+          },
+        },
+        {
+          path: 'discuss',
+          component: DiscussList,
+          meta: {
+            title: '面板'
+          }
+        },
+        {
+          path: 'closed',
+          component: ClosedProjectList,
+          meta: {
+            title: '面板'
+          }
+        }
+      ]
     },
     {
       path: '/login',
-      name: "Login",
+      name: 'Login',
       component: Login,
       meta: {
-        title: "登录"
+        title: '登录'
       }
     },
     {
       path: '/register',
-      name: "Register",
+      name: 'Register',
       component: Register,
       meta: {
-        title: "注册"
+        title: '注册'
       }
     },
     {
@@ -122,21 +148,34 @@ export default new Router({
           }
         }
       ]
-    },
-    {
+    }, {
       path: '/project',
       name: 'Project',
       component: Project,
-      children: [
-        {
-          path: 'creation',
-          name: 'ProjectCreation',
-          component: ProjectCreation,
-          meta: {
-            title: '项目申报',
-            roles: [constants.role.STUDENT]
-          }
+      children: [{
+        path: 'creation',
+        name: 'ProjectCreation',
+        component: ProjectCreation,
+        meta: {
+          title: '项目申报',
+          roles: [constants.role.STUDENT]
         }
+      }, {
+        path: 'details',
+        name: 'ProjectDetails',
+        component: ProjectDetails,
+        meta: {
+          title: '项目详情',
+        }
+      }, {
+        path: 'reapply',
+        name: 'ProjectReapply',
+        component: ProjectReapply,
+        meta: {
+          title: '项目重新申报',
+          roles: [constants.role.STUDENT]
+        }
+      }
       ]
     }
   ]

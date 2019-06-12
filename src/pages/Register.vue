@@ -94,7 +94,7 @@
         this.loading = true
         axios({
           method: 'post',
-          url: constants.softTrackerHostPrefix() + '/checkProjectRole/register',
+          url: constants.softTrackerHostPrefix() + '/auth/register',
           data: {
             username: this.username,
             realname: this.realname,

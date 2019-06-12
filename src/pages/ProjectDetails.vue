@@ -188,7 +188,7 @@
                 <a-select-option value="maven">Maven Project</a-select-option>
               </a-select>
             </div>
-            <a href="#"><a-button type="primary" class="button" block>下载</a-button></a>
+            <a href="http://localhost:8080/download/gitlab-ci-maven-project.yml"><a-button type="primary" class="button" block>下载</a-button></a>
           </div>
         </a-card>
 

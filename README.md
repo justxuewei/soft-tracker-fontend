@@ -4,27 +4,27 @@ SoftTracker is a tracking and guiding platform for software engineering training
 
 The manuscript of SoftTracker is in the `/docs` folder, alternatively, it can be viewed online in the [Github Pages](https://xavier-niu.github.io/soft-tracker-fontend/). You can preview it without deploying any SoftTracker components. Be aware that it is not the final version of the SoftTracker, there are maybe some minor differences between the draft and implementation.
 
-## Get Start
+# Get Start
 
 You can follow the guide below to deploy the back-end SoftTracker in your environment. Please install docker or a virtual machine, such as VirtualBox before you install.
 
-### Database
+## Database
 
 MySQL and Redis are required for SoftTracker. In development environment, MySQL version is `5.7` and Redis is `4.x`. Besides, you should restore the MySQL database with sql file in `./sql` directory. The extra configuration for Redis is not needed.
 
-### GitLab CE
+## GitLab CE
 
 I prefer to install GitLab CE on virtual machine rather than docker, cuz it may have conflicts with the port of other applications, like ssh or http. Read [GitLab official docs](https://about.gitlab.com/install/) and install it according to what system on your server. In this case, `192.168.56.101` is the static ip for GitLab CE server.
 
-### GitLab Runner
+## GitLab Runner
 
 GitLab Runner, an executor of GitLab CI, is installed on the Docker on my server. There is a [blog](https://angristan.xyz/build-push-docker-images-gitlab-ci/) describing how to install and register on the GitLab. Besides, it introduces how to use GitLab CI to build and push Docker Image automatically.
 
-### SonarQube
+## SonarQube
 
 Install SonarQube into virtual machine or docker, the docs are [here](https://www.sonarqube.org/downloads/). Be aware that the version of SonarQube MUST be `6.7.x`.
 
-### SoftTracker Back-end
+## SoftTracker Back-end
 
 Clone the code from GitHub
 
@@ -113,7 +113,7 @@ Because of dealline for gurduation design, the admin panel for SoftTracker is no
 
 ![image-20190620150825837](http://res.niuxuewei.com/2019-06-20-070826.png)
 
-### SoftTracker Front-end
+## SoftTracker Front-end
 
 Install Node.JS from [here](https://nodejs.org/en/).
 

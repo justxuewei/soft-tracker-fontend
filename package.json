@@ -20,7 +20,7 @@
     "highlight.js": "^9.15.6",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.0.2",
     "qs": "^6.7.0",
